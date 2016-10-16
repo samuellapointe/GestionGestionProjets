@@ -1,0 +1,207 @@
+#corps
+{
+	font: 12px/170% Verdana, sans-serif;
+	margin-left: 5%;
+	margin-right: 5%;
+	text-align: center;
+	width: 90%;
+	background-color: #ccf2ff;
+	overflow-x: hidden;
+}
+
+div {
+	display: inline-block;
+}
+
+div#pageContent {
+	/* Dimensions */
+    width: 60%;
+	
+	/* Positionnement */
+	position: absolute;
+    top: 15px;
+    bottom: 15px;
+    left: 0;
+    right: 0;
+	margin: auto;
+	text-align:center;
+}
+
+div#content {
+	background-color: white;
+	width: 90%;
+	
+	text-align:justify;
+	
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+div.menu
+{
+	background: -webkit-linear-gradient(white, #e1e1e1); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(white, #e1e1e1); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(white, #e1e1e1); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(white, #e1e1e1); /* Standard syntax */
+	
+	border-bottom: solid #7EAECC 1px;
+	box-shadow: 0 1px 0 #dbebef;
+	
+	display: table;
+	
+	width: 100%;
+	
+	margin-left: auto;
+	margin-right: auto;
+	height: 96px;
+}
+
+a 
+{
+	text-decoration: none;
+}
+
+a.lienMenu , a.lienMenu:link, a.lienMenu:visited 
+{
+  color: #00ace6;
+  
+  font-weight: bold;
+}
+
+a.lienMenu:hover 
+{
+  color: #007399;
+  text-decoration: underline;
+}
+
+div#map 
+{
+	width: 100%;
+	height: 400px;
+}
+
+div.menu img
+{
+	margin-left: 10px;
+	margin-top: 10px;
+	vertical-align: top;
+	
+	position:relative;
+	float: top;
+}
+
+div.menu li
+{
+	display: inline;
+	
+	padding-right: 32px;
+	
+	font-size: 18px;
+}
+
+div.menu ul.left
+{
+	display: inline;
+	float: left;
+	
+	padding-left: 0px;
+	padding-right: 190px;
+}
+
+div.menu ul.right
+{
+	display: inline;
+	float: right;
+	
+	padding-right: 32px;
+
+}
+
+div.alignHelper
+{
+	display: table-cell;
+	vertical-align: middle;	
+}
+
+footer
+{
+	background: -webkit-linear-gradient(white, #e1e1e1); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(white, #e1e1e1); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(white, #e1e1e1); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(white, #e1e1e1); /* Standard syntax */
+	
+	border-top: solid #7EAECC 1px;
+	box-shadow: 0 1px 0 #dbebef;
+	
+	display: table;
+	
+	width: 100%;
+	
+	margin-left: auto;
+	margin-right: auto;
+	height: 96px;
+}
+
+h1
+{
+	text-align: center;
+}
+
+h1.titre1 {	
+	color: #6ca2c6;
+    font-size: 160%;
+}
+
+h1.titre2 {
+	text-align: left;
+	
+	color: #91b9d4;
+    font-size: 130%;
+}
+
+h1.titre3 {
+	text-align: left;
+	
+	color: #80bfff;
+    font-size: 100%;
+}
+
+img
+{
+	border: 1px solid;
+    border-radius: 5px;
+}
+
+img#logo
+{
+	height: 75px;
+	width: auto;
+}
+
+img.imgMembre
+{
+	width: 120px;
+	height: 120px;
+}
+
+table#membres
+{
+	width: 100%;
+}
+
+td
+{
+	vertical-align:top;
+}
+
+td.idMembre
+{
+	width: 33%;
+	
+	padding-left: 0px;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-bottom: 40px;
+}
