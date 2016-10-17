@@ -125,6 +125,67 @@ div.alignHelper
 	vertical-align: middle;	
 }
 
+div#taskContainer
+{
+	background: #eee;
+	border: solid #ccc 1px;
+	border-radius: 10px;
+	
+	margin-top: 30px;
+	
+	width: 100%;
+}
+
+div.taskOuter
+{
+	float: left;
+	width: 33%;
+	
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+div.taskInner
+{
+	background: #eeeeee;
+	background: -webkit-linear-gradient(#eeeeee, #ffffff); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#eeeeee, #ffffff); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#eeeeee, #ffffff); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#eeeeee, #ffffff); /* Standard syntax */
+	
+	border: groove #aaa 3px;
+	border-radius: 10px;
+	display: block;
+	font-size: medium;
+	overflow-y: auto;
+	
+	width: 80%;
+	height: 60px;
+	
+	margin: 0 auto;
+	padding: 5%;
+}
+
+div.taskAdd
+{
+	background: #efe;
+	background: -webkit-linear-gradient(#cfc, #efe); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#cfc, #efe); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#cfc, #efe); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#cfc, #efe); /* Standard syntax */
+	
+	cursor: pointer;
+}
+
+div.taskAdd:hover
+{
+	background: #dfd;
+	background: -webkit-linear-gradient(#bfb, #dfd); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#bfb, #dfd); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#bfb, #dfd); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#bfb, #dfd); /* Standard syntax */
+}
+
 footer
 {
 	background: -webkit-linear-gradient(white, #e1e1e1); /* For Safari 5.1 to 6.0 */
