@@ -136,6 +136,17 @@ div#taskContainer
 	width: 100%;
 }
 
+div#teammateContainer
+{
+	background: #eee;
+	border: solid #ccc 1px;
+	border-radius: 10px;
+	
+	margin-top: 30px;
+	
+	width: 100%;
+}
+
 div.taskOuter
 {
 	float: left;

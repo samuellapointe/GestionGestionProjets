@@ -9,8 +9,21 @@ function Task(name, estimatedTime) {
 	}
 }
 
+
 function addTask() {
-	var task = new Task("Créer un formulaire", 1.5);
+	var name;
+	var estimatedTime;
+	
+	do{
+		name= prompt("Quel est le nom de la tâche?","");
+		name = name.trim();
+	}while(name == null || name == "");
+	
+	do{
+		estimateTime= prompt("Quel est la durée de la tâche?","0");
+	}while(!isFinite(String(estimateTime)));
+	
+	var task = new Task(name, estimateTime);
 	tasks.push(task);
 	updateTasksLayout();
 }
