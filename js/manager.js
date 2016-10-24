@@ -1,5 +1,6 @@
 ﻿var tasks = new Array();
 var teammates = new Array();
+var totalTime = 0;
 
 // Classes objets
 // Tâche
@@ -36,16 +37,19 @@ function Task(name, estimatedTime) {
 function Teammate(name, tasks) {
 	this.name = name;
 	this.tasks = tasks;
+	this.nbTasks = 0;
 
 	this.toString = function() {
 		return this.name 
-			+ "<br\>" + "Nombre de tâches attitrées: " + tasks.length
-			+ "<br\>" + "Charge estimée: " + this.getTasksEstimatedTime() + "h";
+			+ "<br\>" + "Nombre de tâches attitrées: " + this.tasks.length
+			+ "<br\>" + "Charge estimée: " + this.getTasksEstimatedTime() + "h"
+			+ "<br\>" + "Note estimée: " + this.getEstimatedScore() + "%";
 	}
 	
 	this.addTask = function(task)
 	{
 		this.tasks.push(task);
+		this.nbTasks = tasks.length;
 	}
 	
 	this.getTasksEstimatedTime = function()
@@ -69,6 +73,21 @@ function Teammate(name, tasks) {
 		
 		return false;
 	}
+	
+	this.getEstimatedScore = function()
+	{
+		var workTime = 0;
+		var estimatedScore = 0;
+		
+		for ( var index = 0; index < this.tasks.length; index++)
+		{
+			workTime += this.tasks[index].estimatedTime;
+		}
+		
+		estimatedScore = (workTime/(totalTime/teammates.length))*100;
+		
+		return estimatedScore > 100 ? 100: estimatedScore.toFixed(2);
+	}
 }
 
 // Fonctions interface
@@ -88,6 +107,7 @@ function addTask() {
 	var task = new Task(name, parseFloat(estimateTime));
 	tasks.push(task);
 	updateTasksLayout();
+	totalTime += parseInt(estimateTime);
 }
 
 function addTeammate() {
