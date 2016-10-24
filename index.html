@@ -22,8 +22,13 @@
 				<div id="taskContainer">
 
 				</div>
+				<div id="boutonsExportImport">
+					<button onclick="ExportToXML()">Exporter les tâches</button>
+					<br/><br/>
+					<input type="file" id="MonFichier"/>
+					<button onclick="importXML()">Importer</button>
+				</div>
 			</div>
-			
 			<script>addFooter();</script>
 		</div>
 		<script>updateTasksLayout();</script>
