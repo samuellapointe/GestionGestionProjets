@@ -76,6 +76,70 @@ a.lienMenu:hover
   text-decoration: underline;
 }
 
+button.disabledButton
+{
+	/* Dimensions */
+	font-size: 14px;
+	border-radius: 3px;
+	
+	/* Couleurs */
+	background-color: #5a7061; /* Gris */
+    border: 2px solid #000000; /* Noir */
+	color: #000000; /* Noir */
+	
+	/* Ombrage */
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	
+	/* Positionnement */
+	display: inline-block;
+	padding: 5px 5px;
+    text-align: center;
+ 
+	/* Texte */
+    text-decoration: none;
+	
+	/* Animation */
+	-webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+button.disabledButton:hover {
+	background-color: #dd221f; /* Rouge */
+    color: white;
+}
+
+button.enabledButton
+{
+	/* Dimensions */
+	font-size: 14px;
+	border-radius: 3px;
+	
+	/* Couleurs */
+	background-color: #0bba01; /* Vert pâle */
+    border: 2px solid #000000; /* Noir */
+	color: #000000; /* Noir */
+	
+	/* Ombrage */
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	
+	/* Positionnement */
+	display: inline-block;
+	padding: 5px 5px;
+    text-align: center;
+ 
+	/* Texte */
+    text-decoration: none;
+	
+	/* Animation */
+	-webkit-transition-duration: 0.3s; /* Safari */
+    transition-duration: 0.3s;
+}
+
+button.enabledButton:hover {
+	background-color: #025b1e; /* vert foncé */
+    color: white;
+}
+
 div#map 
 {
 	width: 100%;
