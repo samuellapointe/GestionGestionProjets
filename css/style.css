@@ -342,3 +342,9 @@ td.idMembre
 	padding-top: 0px;
 	padding-bottom: 40px;
 }
+
+.button 
+{
+	background-color: gray;
+	border:none;
+}
