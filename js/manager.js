@@ -38,12 +38,13 @@ function Teammate(name, tasks) {
 	this.name = name;
 	this.tasks = tasks;
 	this.nbTasks = 0;
+	this.score = 0;
 
 	this.toString = function() {
 		return this.name 
 			+ "<br\>" + "Nombre de tâches attitrées: " + this.tasks.length
 			+ "<br\>" + "Charge estimée: " + this.getTasksEstimatedTime() + "h"
-			+ "<br\>" + "Note estimée: " + this.getEstimatedScore() + "%";
+			+ "<br\>" + "Note estimée: " + this.score + "%";
 	}
 	
 	this.addTask = function(task)
@@ -57,7 +58,7 @@ function Teammate(name, tasks) {
 		var time = 0;
 		for (var index = 0; index < this.tasks.length; index++) 
 		{
-			time += this.tasks[index].estimatedTime;
+			time += parseFloat(this.tasks[index].estimatedTime);
 		}
 		
 		return time;
@@ -81,12 +82,14 @@ function Teammate(name, tasks) {
 		
 		for ( var index = 0; index < this.tasks.length; index++)
 		{
-			workTime += this.tasks[index].estimatedTime;
+			workTime += parseFloat(this.tasks[index].estimatedTime);
 		}
 		
 		estimatedScore = (workTime/(totalTime/teammates.length))*100;
 		
-		return estimatedScore > 100 ? 100: estimatedScore.toFixed(2);
+		this.score = estimatedScore > 100 ? 100: estimatedScore.toFixed(2);
+		
+		return this.score;
 	}
 }
 
@@ -107,7 +110,7 @@ function addTask() {
 	var task = new Task(name, parseFloat(estimateTime));
 	tasks.push(task);
 	updateTasksLayout();
-	totalTime += parseInt(estimateTime);
+	totalTime += parseFloat(estimateTime);
 }
 
 function addTeammate() {
@@ -281,6 +284,8 @@ function distributeTasks()
 		teammates[leastBusyTeammate].addTask(tasks[index]);
 	}
 	
+	gradeEveryone();
+	
 	updateLayout();
 }
 
@@ -303,6 +308,39 @@ function getLeastBusyTeammateIndex()
 	return leastBusyIndex;
 }
 
+function gradeEveryone()
+{
+	var maxGroupPointLost = 5 * teammates.length;
+	var nbOfNonPerfectScore = teammates.length;
+	var currentGroupPointLost = 0;
+	var pointsNeeded = 0;
+	var correction = 0;
+	
+	for (var index = 0; index < teammates.length; index++)
+	{
+		var tmp = teammates[index].getEstimatedScore();
+		
+		if(tmp == 100)
+			nbOfNonPerfectScore--;
+		
+		currentGroupPointLost += 100 - tmp;
+	}
+	
+	if(currentGroupPointLost > maxGroupPointLost)
+	{
+		pointsNeeded = currentGroupPointLost - maxGroupPointLost;
+		
+		for (var cpt = 0; cpt < teammates.length; cpt++)
+		{
+			if(teammates[cpt].score != 100)
+			{
+				correction = ((100-teammates[cpt].score)/currentGroupPointLost) * pointsNeeded;
+				teammates[cpt].score = parseFloat(teammates[cpt].score) + parseFloat(correction.toFixed(2));
+			}
+		}
+	}
+}
+
 /**
  * Randomize array element order in-place.
  * Using Durstenfeld shuffle algorithm.
@@ -317,4 +355,89 @@ function shuffleArray(array) {
         array[j] = temp;
     }
     return array;
+}
+
+function ExportToXML(){
+	if(tasks.length != 0)
+	{
+		var a = document.createElement("a"),
+        file = new Blob([formatTasksToXml()], {type: 'text/plain;charset=utf-8'});
+		if (window.navigator.msSaveOrOpenBlob) // Internet Explorer
+        window.navigator.msSaveOrOpenBlob(file, "Taches.xml");
+		else//Reste
+		{
+			a.href = window.URL.createObjectURL(file);
+			a.download = "Taches.xml";
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(function() {
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);  
+			}, 0); 
+		}
+	}
+	else
+	{
+		alert("Vous devez avoir au moins une tâche!");
+	}
+}
+
+function importXML(){
+	var leFichierXml = document.getElementById("MonFichier");
+	if(leFichierXml.value != '')
+	{
+		var file = leFichierXml.files[0];
+		var textType = /xml.*/;
+		
+		if(file.type.match(textType))
+		{
+			var reader = new FileReader();
+			reader.onload = function(e){
+				formatXMLToTask(reader.result);
+			}
+			reader.readAsText(file);
+		}
+		else
+			alert("Choisir un fichier XML!");
+	}
+	else
+	{
+		alert("Choisir un fichier avant");
+	}
+	
+	
+}
+
+function formatTasksToXml(){
+	var fichierXml = "<?xml version =\"1.0\" ?>\n<listeTaches>";
+	for(var i = 0; i < tasks.length; i++)
+	{
+		fichierXml+="\n\t<Tache>";
+		fichierXml+="\n\t\t<nomTache>" + tasks[i].name + "</nomTache>";
+		fichierXml+="\n\t\t<tempEstime>" + tasks[i].estimatedTime + "</tempEstime>";
+		fichierXml+="\n\t</Tache>";
+	}
+	fichierXml+="\n</listeTaches>";
+	return fichierXml;
+}
+
+function formatXMLToTask(fileResults){
+	var lines = fileResults.split('\n');
+	for(var i = 3; i < lines.length; i++)
+	{
+		var taskName = lines[i].split('>')[1].split('<')[0];
+		var taskTime = lines[i+1].split('>')[1].split('<')[0];
+		
+		tasks.push(new Task(taskName, taskTime));
+		
+		
+		totalTime += parseFloat(taskTime);
+		
+		if(lines[i+3] == "\t<Tache>")
+			i+=3;
+		else
+			break;
+	}
+	
+	updateTasksLayout();
 }
