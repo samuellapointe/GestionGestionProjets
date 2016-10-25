@@ -85,7 +85,7 @@ button.disabledButton
 	/* Couleurs */
 	background-color: #5a7061; /* Gris */
     border: 2px solid #000000; /* Noir */
-	color: #000000; /* Noir */
+	color: white; /* Noir */
 	
 	/* Ombrage */
 	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
@@ -138,8 +138,29 @@ button.enabledButton
 button.enabledButton:hover {
 	background-color: #025b1e; /* vert foncé */
     color: white;
+    border-radius: 3px;
 }
 
+button 
+{
+	border-style: solid;
+}
+	button#deleteTaskX{
+		width: 31px; height: 31px; float: right; position :relative; top:18px;
+		background: url(../img/x.png);
+		border-style: none;
+	}
+	button#importExport{
+		background-color: #ddd;
+		border-width: 1px; border-color: gray;
+		padding: 3px;
+		padding-right: 7px;
+		padding-left: 7px;
+	}
+	button#importExport:hover{
+		background-color: #fff;
+	}
+	
 div#map 
 {
 	width: 100%;
@@ -215,7 +236,7 @@ div.taskOuter, div.teammateOuter
 	width: 33%;
 	
 	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 40px;
 }
 
 div.taskInner, div.teammateInner
@@ -251,6 +272,7 @@ div.taskAdd, div.teammateAdd
     background: linear-gradient(#cfc, #efe); /* Standard syntax */
 	
 	cursor: pointer;
+	position:relative; top : 31px;
 }
 
 div.taskAdd:hover, div.teammateAdd:hover
@@ -343,12 +365,3 @@ td.idMembre
 	padding-bottom: 40px;
 }
 
-button 
-{
-	background-color: gray;
-	border:none;
-}
-	button#deleteTaskX{
-		width: 31px; height: 31px; float: right; padding: 0 0 0 0;
-		background: url(../img/x.png);
-	}

@@ -186,7 +186,8 @@ function updateTasksLayout() {
 // Créer un élement de base
 function createBaseElement(type) {
 	var outerDiv = document.createElement("div");
-	outerDiv.className = type + "Outer";	
+	outerDiv.className = type + "Outer";
+
 
 	var innerDiv = document.createElement("div");
 	innerDiv.className = type + "Inner";
@@ -214,11 +215,12 @@ function createTaskElement(text, taskName, isAddTask) {
 	{
 		var deleteTaskX = document.createElement("BUTTON");
 		deleteTaskX.id = "deleteTaskX";
-		innerDiv.appendChild(deleteTaskX);
+		outerDiv.appendChild(deleteTaskX);
 		deleteTaskX.onclick = function() { deleteTask(taskName);};
 	}
-
+	
 	outerDiv.appendChild(innerDiv);
+	
 
 	return outerDiv;
 }
