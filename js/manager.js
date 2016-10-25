@@ -186,28 +186,40 @@ function updateTasksLayout() {
 // Créer un élement de base
 function createBaseElement(type) {
 	var outerDiv = document.createElement("div");
-	outerDiv.className = type + "Outer";
+	outerDiv.className = type + "Outer";	
 
 	var innerDiv = document.createElement("div");
 	innerDiv.className = type + "Inner";
-	innerDiv.onclick = function() { deleteTask(taskName);};
+
 	
+
 	outerDiv.appendChild(innerDiv);
+
 	return outerDiv;
 }
 
 // Si isAddTask = true, alors c'est le bouton d'ajout de tâche
 function createTaskElement(text, taskName, isAddTask) {
+	
 	outerDiv = createBaseElement("task");
 	innerDiv = outerDiv.childNodes[0];
 	innerDiv.innerHTML = text;
+	
 
 	if (isAddTask) {
 		innerDiv.className = "taskInner taskAdd";
 		innerDiv.onclick = function() { addTask(); };
 	}
+	else
+	{
+		var deleteTaskX = document.createElement("BUTTON");
+		deleteTaskX.id = "deleteTaskX";
+		innerDiv.appendChild(deleteTaskX);
+		deleteTaskX.onclick = function() { deleteTask(taskName);};
+	}
 
 	outerDiv.appendChild(innerDiv);
+
 	return outerDiv;
 }
 

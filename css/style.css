@@ -343,8 +343,12 @@ td.idMembre
 	padding-bottom: 40px;
 }
 
-.button 
+button 
 {
 	background-color: gray;
 	border:none;
 }
+	button#deleteTaskX{
+		width: 31px; height: 31px; float: right; padding: 0 0 0 0;
+		background: url(../img/x.png);
+	}
