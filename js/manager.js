@@ -371,11 +371,11 @@ function shuffleArray(array) {
     return array;
 }
 
-function ExportToXML(){
+function ExportTaskToXML(){
 	if(tasks.length != 0)
 	{
 		var a = document.createElement("a"),
-        file = new Blob([formatTasksToXml()], {type: 'text/plain;charset=utf-8'});
+		file = new Blob([formatTasksToXml()], {type: 'text/plain;charset=utf-8'});
 		if (window.navigator.msSaveOrOpenBlob) // Internet Explorer
         window.navigator.msSaveOrOpenBlob(file, "Taches.xml");
 		else//Reste
@@ -396,8 +396,58 @@ function ExportToXML(){
 	}
 }
 
-function importXML(){
-	var leFichierXml = document.getElementById("MonFichier");
+function ExportTeamToText(){
+	if(teammates.length != 0)
+	{
+		var a = document.createElement("a"),
+		file = new Blob([formatTeamToText()], {type: 'text/plain;charset=utf-8'});
+		if (window.navigator.msSaveOrOpenBlob) // Internet Explorer
+        window.navigator.msSaveOrOpenBlob(file, "Equipe.txt");
+		else//Reste
+		{
+			a.href = window.URL.createObjectURL(file);
+			a.download = "Equipe.txt";
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(function() {
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);  
+			}, 0); 
+		}
+	}
+	else
+	{
+		alert("Vous devez avoir au moins une tâche!");
+	}
+}
+
+function ExportTeamAndTasksToXML(){
+	if(teammates.length != 0 && tasks.length != 0)
+	{
+		var a = document.createElement("a"),
+        file = new Blob([formatTeamAndTasksToXml()], {type: 'text/plain;charset=utf-8'});
+		if (window.navigator.msSaveOrOpenBlob) // Internet Explorer
+        window.navigator.msSaveOrOpenBlob(file, "EquipeEtTaches.xml");
+		else//Reste
+		{
+			a.href = window.URL.createObjectURL(file);
+			a.download = "EquipeEtTaches.xml";
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(function() {
+				document.body.removeChild(a);
+				window.URL.revokeObjectURL(url);  
+			}, 0); 
+		}
+	}
+	else
+	{
+		alert("Vous devez avoir au moins un membre dans l'équipe!");
+	}
+}
+
+function importTaskXML(){
+	var leFichierXml = document.getElementById("MonFichierTask");
 	if(leFichierXml.value != '')
 	{
 		var file = leFichierXml.files[0];
@@ -418,22 +468,78 @@ function importXML(){
 	{
 		alert("Choisir un fichier avant");
 	}
-	
-	
+}
+
+function importTeamText(){
+	var leFichierXml = document.getElementById("MonFichierTeam");
+	if(leFichierXml.value != '')
+	{
+		var file = leFichierXml.files[0];
+		if(file.type.match('text/plain'))
+		{
+			var reader = new FileReader();
+			reader.onload = function(e){
+				formatTextToTeam(reader.result);
+			}
+			reader.readAsText(file);
+		}
+		else
+			alert("Choisir un fichier texte!");
+	}
+	else
+	{
+		alert("Choisir un fichier avant");
+	}
 }
 
 function formatTasksToXml(){
-	var fichierXml = "<?xml version =\"1.0\" ?>\n<listeTaches>";
+	var fichierXml = "<?xml version =\"1.0\" ?>\n<ListeTaches>";
 	for(var i = 0; i < tasks.length; i++)
 	{
 		fichierXml+="\n\t<Tache>";
-		fichierXml+="\n\t\t<nomTache>" + tasks[i].name + "</nomTache>";
-		fichierXml+="\n\t\t<tempEstime>" + tasks[i].estimatedTime + "</tempEstime>";
+		fichierXml+="\n\t\t<NomTache>" + tasks[i].name + "</NomTache>";
+		fichierXml+="\n\t\t<TempEstime>" + tasks[i].estimatedTime + "</TempEstime>";
 		fichierXml+="\n\t</Tache>";
 	}
-	fichierXml+="\n</listeTaches>";
+	fichierXml+="\n</ListeTaches>";
 	return fichierXml;
 }
+
+function formatTeamToText(){
+	var ficTexte = "";
+	for(var i = 0; i < teammates.length; i++)
+	{
+		if(i == teammates.length-1)
+			ficTexte+= teammates[i].name;
+		else
+			ficTexte+= teammates[i].name + "\r\n";
+	}
+	return ficTexte;
+}
+
+function formatTeamAndTasksToXml(){
+	var fichierXml = "<?xml version =\"1.0\" ?>\n<Équipe>";
+	for(var i = 0; i < teammates.length; i++)
+	{
+		fichierXml+="\n\t<Membre>";0
+		fichierXml+="\n\t\t<NomMembre>" + teammates[i].name + "</NomMembre>";
+		fichierXml+="\n\t\t<NombreTaches>" + teammates[i].tasks.length + "</NombreTaches>";
+		fichierXml+="\n\t\t<Score>" + teammates[i].score + "</Score>";
+		fichierXml+="\n\t\t<ListeTaches>";
+		for(var j = 0; j < teammates[i].tasks.length; j++)
+		{
+			fichierXml+="\n\t\t\t<Tache>";
+			fichierXml+="\n\t\t\t\t<NomTache>" + teammates[i].tasks[j].name + "</NomTache>";
+			fichierXml+="\n\t\t\t\t<TempEstime>" + teammates[i].tasks[j].estimatedTime + "</TempEstime>";
+			fichierXml+="\n\t\t\t</Tache>";
+		}
+		fichierXml+="\n\t\t</ListeTaches>";
+		fichierXml+="\n\t</Membre>";
+	}
+	fichierXml+="\n</Équipe>";
+	return fichierXml;
+}
+
 
 function formatXMLToTask(fileResults){
 	var lines = fileResults.split('\n');
@@ -454,4 +560,13 @@ function formatXMLToTask(fileResults){
 	}
 	
 	updateTasksLayout();
+}
+
+function formatTextToTeam(fileResults){
+	var lines = fileResults.split('\r\n');
+	for(var i = 0; i < lines.length; i++)
+	{
+		teammates.push(new Teammate(lines[i], []));
+	}
+	updateTeammatesLayout()
 }

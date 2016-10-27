@@ -22,11 +22,11 @@
 				<div id="taskContainer">
 
 				</div>
-				<div id="boutonsExportImport">
-					<button onclick="ExportToXML()" id="importExport">Exporter les tâches</button>
+				<div id="boutonsExportImportTasks">
+					<button onclick="ExportTaskToXML()" id="importExport">Exporter les tâches</button>
 					<br/><br/>
-					<input class="inputfile" name="file" type="file" id="MonFichier"/>
-					<button onclick="importXML()" id="importExport">Importer</button>
+					<input class="inputfile" name="file" type="file" id="MonFichierTask"/>
+					<button onclick="importTaskXML()" id="importExport">Importer</button>
 				</div>			
 				<br/>
 				
@@ -38,6 +38,16 @@
 				
 				<button id="distributeTasksButton" class="enabledButton" type="button" onclick="distributeTasks();">Distribuer les tâches</button> 
 				<span id="distributeTasksMessages"></span>
+				<br/><br/>
+				<div id="boutonsExportImportTeam">
+					<button onclick="ExportTeamToText()" id="importExport">Exporter l'équipe</button>
+					<br/><br/>
+					<input class="inputfile" name="file" type="file" id="MonFichierTeam"/>
+					<button onclick="importTeamText()" id="importExport">Importer un équipe</button>
+				</div>
+				<br/><br/>
+				<br/><br/>
+				<button onclick="ExportTeamAndTasksToXML()" id="importExport">Sauvegarder le résultat</button>
 			</div>
 			<script>addFooter();</script>
 		</div>
