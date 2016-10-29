@@ -288,8 +288,11 @@ function distributeTasks()
 	
 	// Mélanger l'ordre des tâches et des coéquipiers pour obtenir une 
 	// distribution un peu différente à chaque fois.
-	shuffleArray(tasks);
+	//shuffleArray(tasks);
 	shuffleArray(teammates);
+	
+	// Mettre en ordre de temps les tâches
+	tasks = sortTasksByTime(tasks);
 	
 	// On donne chaque tâche à celui qui a le moins de tâches attitrées.
 	for (var index = 0; index < tasks.length; index++) 
@@ -301,6 +304,28 @@ function distributeTasks()
 	gradeEveryone();
 	
 	updateLayout();
+}
+
+function sortTasksByTime(tasks) {
+	var newTasks = Array();
+	
+	while (tasks.length > 0) {
+		var longestTime = 0;
+		var longestTask;
+		for (var index = 0; index < tasks.length; index++) 
+		{
+			if (tasks[index].estimatedTime > longestTime) {
+				longestTime = tasks[index].estimatedTime;
+				longestTask = tasks[index];
+			}
+		}
+		newTasks.push(longestTask);
+		var index = tasks.indexOf(longestTask);
+
+		tasks.splice(index, 1);
+	}
+	
+	return newTasks;
 }
 
 // Renvoie l'index du coéquipier qui a présentement la plus
