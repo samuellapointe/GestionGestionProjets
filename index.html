@@ -22,13 +22,29 @@
 				<div id="taskContainer">
 
 				</div>
-				<div id="boutonsExportImportTasks">
-					<button onclick="ExportTaskToXML()" id="importExport">Exporter les tâches</button>
-					<br/><br/>
-					<input class="inputfile" name="file" type="file" id="MonFichierTask"/>
-					<button onclick="importTaskXML()" id="importExport">Importer</button>
-				</div>			
-				<br/>
+
+				<table class="import-export">
+					<tr>
+						<td>	
+							Exporter:
+						</td>
+						<td>
+							<button onclick="ExportTaskToXML()" id="importExport">Exporter les tâches</button>
+						</td>
+					</tr>
+					<tr>
+						<td>	
+							Importer:
+						</td>
+						<td>
+							<button onclick="importTaskXML()" id="importExport">Importer les tâches</button>
+						</td>
+						<td>
+							<input class="inputfile" name="file" type="file" id="MonFichierTask"/>
+						</td>
+					</tr>
+				</table>
+				
 				
 				<h1 class="titre1">Liste des coéquipiers</h1>
 				
@@ -36,17 +52,35 @@
 
 				</div>
 				
+				<table class="import-export">
+					<tr>
+						<td>	
+							Exporter:
+						</td>
+						<td>
+							<button onclick="ExportTeamToText()" id="importExport">Exporter l'équipe</button>
+						</td>
+					</tr>
+					<tr>
+						<td>	
+							Importer:
+						</td>
+						<td>
+							<button onclick="importTeamText()" id="importExport">Importer un équipe</button>
+						</td>
+						<td>
+							<input class="inputfile" name="file" type="file" id="MonFichierTeam"/>
+						</td>
+					</tr>
+				</table>
+				
+				<br/><br/>
+				
 				<button id="distributeTasksButton" class="enabledButton" type="button" onclick="distributeTasks();">Distribuer les tâches</button> 
 				<span id="distributeTasksMessages"></span>
-				<br/><br/>
-				<div id="boutonsExportImportTeam">
-					<button onclick="ExportTeamToText()" id="importExport">Exporter l'équipe</button>
-					<br/><br/>
-					<input class="inputfile" name="file" type="file" id="MonFichierTeam"/>
-					<button onclick="importTeamText()" id="importExport">Importer un équipe</button>
-				</div>
-				<br/><br/>
-				<br/><br/>
+
+				<br/><br/><br/>
+
 				<button onclick="ExportTeamAndTasksToXML()" id="importExport">Sauvegarder le résultat</button>
 			</div>
 			<script>addFooter();</script>

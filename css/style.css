@@ -80,11 +80,11 @@ button.disabledButton
 {
 	/* Dimensions */
 	font-size: 14px;
-	border-radius: 3px;
 	
 	/* Couleurs */
 	background-color: #5a7061; /* Gris */
     border: 2px solid #000000; /* Noir */
+	border-radius: 5px;
 	color: white; /* Noir */
 	
 	/* Ombrage */
@@ -92,7 +92,7 @@ button.disabledButton
 	
 	/* Positionnement */
 	display: inline-block;
-	padding: 5px 5px;
+	padding: 15px 15px;
     text-align: center;
  
 	/* Texte */
@@ -112,11 +112,11 @@ button.enabledButton
 {
 	/* Dimensions */
 	font-size: 14px;
-	border-radius: 3px;
 	
 	/* Couleurs */
 	background-color: #0bba01; /* Vert pâle */
     border: 2px solid #000000; /* Noir */
+	border-radius: 5px;
 	color: #000000; /* Noir */
 	
 	/* Ombrage */
@@ -124,7 +124,7 @@ button.enabledButton
 	
 	/* Positionnement */
 	display: inline-block;
-	padding: 5px 5px;
+	padding: 15px 15px;
     text-align: center;
  
 	/* Texte */
@@ -133,6 +133,8 @@ button.enabledButton
 	/* Animation */
 	-webkit-transition-duration: 0.3s; /* Safari */
     transition-duration: 0.3s;
+	
+	cursor: pointer;
 }
 
 button.enabledButton:hover {
@@ -146,9 +148,16 @@ button
 	border-style: solid;
 }
 	button#deleteTaskX{
-		width: 31px; height: 31px; float: right; position :relative; top:18px;
+		width: 31px; 
+		height: 31px; 
+
+		position: absolute; 
+		top: 0px;
+		left: 90%;
 		background: url(../img/x.png);
 		border-style: none;
+		
+		cursor: pointer;
 	}
 	button#importExport{
 		background-color: #ddd;
@@ -232,11 +241,11 @@ div#teammateContainer
 
 div.taskOuter, div.teammateOuter
 {
+	position: relative;
 	float: left;
 	width: 33%;
-	
 	padding-top: 10px;
-	padding-bottom: 40px;
+	padding-bottom: 10px;
 }
 
 div.taskInner, div.teammateInner
@@ -248,7 +257,7 @@ div.taskInner, div.teammateInner
 	overflow-y: auto;
 	
 	width: 80%;
-	height: 60px;
+	min-height: 60px;
 	
 	margin: 0 auto;
 	padding: 5%;
@@ -272,7 +281,6 @@ div.taskAdd, div.teammateAdd
     background: linear-gradient(#cfc, #efe); /* Standard syntax */
 	
 	cursor: pointer;
-	position:relative; top : 31px;
 }
 
 div.taskAdd:hover, div.teammateAdd:hover
@@ -327,6 +335,10 @@ h1.titre3 {
     font-size: 100%;
 }
 
+span#distributeTasksMessages {
+	margin-left: 15px;
+}
+
 img
 {
 	border: 1px solid;
@@ -365,3 +377,18 @@ td.idMembre
 	padding-bottom: 40px;
 }
 
+table.import-export
+{
+	border-collapse: collapse;
+}
+
+table.import-export td
+{
+	border: solid #dddddd 1px;
+	padding: 10px;
+}
+
+table.import-export tr
+{
+
+}
