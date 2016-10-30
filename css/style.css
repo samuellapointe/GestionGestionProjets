@@ -159,6 +159,19 @@ button
 		
 		cursor: pointer;
 	}
+	button#deleteTeammateX
+	{
+		width: 31px; 
+		height: 31px; 
+
+		position: absolute; 
+		top: 0px;
+		left: 90%;
+		background: url(../img/x.png);
+		border-style: none;
+		
+		cursor: pointer;
+	}
 	button#importExport{
 		background-color: #ddd;
 		border-width: 1px; border-color: gray;

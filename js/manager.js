@@ -127,16 +127,30 @@ function addTeammate() {
 
 function deleteTask(name)
 {
-	var nbTasks = tasks.length;
+	var nbTeammates = teammates.length;
 	
 	for (var i = 0; i < nbTasks; i++)
 	{
-		if(tasks[i].name == name)
+		if(teammates[i].name == name)
 		{
-			tasks.splice(i,1);
+			teammates.splice(i,1);
 		}
 	}
 	updateTasksLayout();
+}
+
+function deleteTeammate(name)
+{
+	var nbTeammates = teammates.length;
+	
+	for (var i = 0; i < nbTeammates; i++)
+	{
+		if(teammates[i].name == name)
+		{
+			teammates.splice(i,1);
+		}
+	}
+	updateTeammatesLayout();
 }
 
 // Update tasks et teammates
@@ -153,12 +167,12 @@ function updateTeammatesLayout() {
 
 	// Add every teammate
 	for (var i = 0; i < nbTeammates; i++) {
-		var teammate = createTeammateElement(teammates[i].toString(), false);
+		var teammate = createTeammateElement(teammates[i].toString(), teammates[i].name, false);
 		container.appendChild(teammate);
 	}
 
 	// Add the "Add teammate" button
-	var addTeammateButton = createTeammateElement("Ajouter un équipier", true);
+	var addTeammateButton = createTeammateElement("Ajouter un équipier", "", true);
 	container.appendChild(addTeammateButton);
 	
 	checkValidForTaskDistribution();
@@ -199,6 +213,7 @@ function createBaseElement(type) {
 	return outerDiv;
 }
 
+
 // Si isAddTask = true, alors c'est le bouton d'ajout de tâche
 function createTaskElement(text, taskName, isAddTask) {
 	
@@ -226,7 +241,7 @@ function createTaskElement(text, taskName, isAddTask) {
 }
 
 // Si isAddTeammate = true, alors c'est le bouton d'ajout de tâche
-function createTeammateElement(text, isAddTeammate) {
+function createTeammateElement(text, teammateName, isAddTeammate) {
 	var outerDiv = createBaseElement("teammate");
 	innerDiv = outerDiv.childNodes[0];
 	innerDiv.innerHTML = text;
@@ -234,6 +249,13 @@ function createTeammateElement(text, isAddTeammate) {
 	if (isAddTeammate) {
 		innerDiv.className = "teammateInner teammateAdd";
 		innerDiv.onclick = function() { addTeammate(); };
+	}
+	else
+	{
+		var deleteTeammateX = document.createElement("BUTTON");
+		deleteTeammateX.id = "deleteTeammateX";
+		outerDiv.appendChild(deleteTeammateX);
+		deleteTeammateX.onclick = function() { deleteTeammate(teammateName);};
 	}
 
 	outerDiv.appendChild(innerDiv);
