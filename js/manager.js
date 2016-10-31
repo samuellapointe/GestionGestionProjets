@@ -464,7 +464,7 @@ function ExportTeamToText(){
 	}
 	else
 	{
-		alert("Vous devez avoir au moins une tâche!");
+		alert("Vous devez avoir au moins un équipier!");
 	}
 }
 
@@ -489,7 +489,7 @@ function ExportTeamAndTasksToXML(){
 	}
 	else
 	{
-		alert("Vous devez avoir au moins un membre dans l'équipe!");
+		alert("Vous devez avoir au moins un membre dans l'équipe et une tâche");
 	}
 }
 
