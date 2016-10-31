@@ -127,13 +127,13 @@ function addTeammate() {
 
 function deleteTask(name)
 {
-	var nbTeammates = teammates.length;
+	var nbTasks = tasks.length;
 	
 	for (var i = 0; i < nbTasks; i++)
 	{
-		if(teammates[i].name == name)
+		if(tasks[i].name == name)
 		{
-			teammates.splice(i,1);
+			tasks.splice(i,1);
 		}
 	}
 	updateTasksLayout();
